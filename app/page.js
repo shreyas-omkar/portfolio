@@ -103,7 +103,7 @@ const fileSystem = {
           "resume.pdf": {
             type: "file",
             content: "📄 Resume - Shreyas Hegde\nUse 'pacman -Syu resume' to download this file.",
-            downloadUrl: "https://drive.google.com/uc?export=download&id=1c0xjjOLIxZCTfHMWg17QFozWZHb2KVT0",
+            downloadUrl: "https://drive.google.com/uc?export=download&id=1jrUYwmyQezTORLyKrJ3ghX7YxGtBL2o_",
           }
         }
       },
