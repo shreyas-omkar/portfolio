@@ -130,7 +130,7 @@ function relativePromptPath(cwd) {
   return cwd.slice(2);
 }
 
-// ASCII art lines of your logo (replace this with your ASCII image)
+// ASCII art lines of your logo (responsive version)
 const asciiArtLines = [
   " _____ ",
   "/ ____|",
@@ -164,8 +164,8 @@ const asciiArtLines = [
   " \\ \\ / / ",
   "  \\ V /  ",
   "   | |   ",
-  "   | |   ",
-  "   |_| ",
+  "   |_|   ",
+  "   ",
   "",
   "",
   "    /\\    ",
@@ -210,8 +210,6 @@ const Home = () => {
     inputRef.current?.focus();
   }, []);
 
-  // Cursor blinking effect with CSS handled below
-
   const commandsList = [
     { cmd: "ls", desc: "List directory contents" },
     { cmd: "cd [dir]", desc: "Change directory" },
@@ -226,13 +224,8 @@ const Home = () => {
   const prompt = `shaggy@space:${relativePromptPath(cwd)}$`;
 
   const handleNeofetch = () => {
-    // Compose neofetch output: ascii on left, info on right horizontally aligned
-    // We'll animate the ascii art lines with framer motion
-    
-    // Max height for alignment
     const maxLines = Math.max(asciiArtLines.length, aboutInfoLines.length);
     
-    // Build combined lines
     let combinedLines = [];
     for (let i = 0; i < maxLines; i++) {
       const asciiLine = asciiArtLines[i] || "";
@@ -240,14 +233,12 @@ const Home = () => {
       combinedLines.push({ asciiLine, aboutLine });
     }
 
-    // We will return a special object so that in render we can detect and animate it
     return combinedLines;
   };
 
   const downloadResume = () => {
     const resumeFile = fileSystem["~"].contents.resume.contents["resume.pdf"];
     if (resumeFile && resumeFile.downloadUrl) {
-      // Create a temporary link element and trigger download
       const link = document.createElement('a');
       link.href = resumeFile.downloadUrl;
       link.download = 'shreyas-hegde-resume.pdf';
@@ -341,7 +332,6 @@ const Home = () => {
           newHistory.push("❌ Resume download failed.");
         }
       } else if (trimmedCmd === "neofetch") {
-        // Add animated neofetch output object to history
         newHistory.push({ neofetch: handleNeofetch() });
       } else {
         newHistory.push(
@@ -389,15 +379,16 @@ const Home = () => {
 
   return (
     <div
-      className="bg-gradient-to-br from-gray-900 to-black text-green-300 min-h-screen flex flex-col items-center justify-start p-4 font-mono"
-      style={{ fontSize: "1rem" }}
+      className="bg-gradient-to-br from-gray-900 to-black text-green-300 min-h-screen flex flex-col items-center justify-start p-2 sm:p-4 font-mono"
+      style={{ fontSize: "clamp(0.75rem, 2vw, 1rem)" }}
       onClick={() => inputRef.current?.focus()}
     >
       <div
-        className="w-full max-w-4xl bg-black bg-opacity-70 rounded-lg p-6 shadow-lg"
+        className="w-full max-w-7xl bg-black bg-opacity-70 rounded-lg p-3 sm:p-6 shadow-lg overflow-hidden"
         style={{ minHeight: "70vh" }}
       >
         <div
+          className="overflow-x-auto"
           style={{
             whiteSpace: "pre",
             fontFamily: "monospace",
@@ -406,25 +397,19 @@ const Home = () => {
         >
           {history.map((line, index) =>
             typeof line === "string" ? (
-              <div key={index}>{line}</div>
+              <div key={index} className="break-words whitespace-pre-wrap">{line}</div>
             ) : line.neofetch ? (
-              // Render neofetch horizontally: ascii left, info right
               <div
                 key={index}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "2rem",
-                  fontFamily: "'Courier New', Courier, monospace",
-                }}
+                className="flex flex-col lg:flex-row gap-4 lg:gap-8 font-mono my-4"
               >
                 <div
+                  className="text-green-400 font-bold text-center lg:text-left flex-shrink-0"
                   style={{
                     lineHeight: 1.1,
                     whiteSpace: "pre",
-                    color: "#00ff00",
-                    fontWeight: "bold",
-                    minWidth: "20ch",
+                    fontSize: "clamp(0.6rem, 1.5vw, 0.85rem)",
+                    minWidth: "fit-content",
                   }}
                 >
                   {line.neofetch.map(({ asciiLine }, i) => (
@@ -439,11 +424,12 @@ const Home = () => {
                   ))}
                 </div>
                 <div
+                  className="text-white flex-1 min-w-0"
                   style={{
                     lineHeight: 1.4,
                     whiteSpace: "pre-wrap",
-                    flexGrow: 1,
-                    color: "white",
+                    fontSize: "clamp(0.7rem, 1.8vw, 0.9rem)",
+                    wordBreak: "break-word",
                   }}
                 >
                   {line.neofetch.map(({ aboutLine }, i) => (
@@ -452,6 +438,7 @@ const Home = () => {
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
+                      className="break-words"
                     >
                       {aboutLine}
                     </motion.div>
@@ -460,20 +447,13 @@ const Home = () => {
               </div>
             ) : null
           )}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: "0.5rem",
-            }}
-          >
+          <div className="flex flex-row items-center mt-2 min-w-0">
             <span
+              className="text-green-400 font-bold flex-shrink-0 pr-2"
               style={{
-                color: "#00ff00",
-                marginRight: "0.5rem",
-                fontWeight: "bold",
                 userSelect: "none",
+                fontSize: "clamp(0.75rem, 2vw, 1rem)",
+                wordBreak: "break-all",
               }}
             >
               {prompt}
@@ -488,15 +468,10 @@ const Home = () => {
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"
+              className="bg-transparent border-none outline-none text-green-400 font-mono flex-1 min-w-0"
               style={{
-                background: "transparent",
-                border: "none",
-                outline: "none",
-                color: "#00ff00",
-                fontFamily: "monospace",
-                fontSize: "1rem",
                 caretColor: "#00ff00",
-                flexGrow: 1,
+                fontSize: "clamp(0.75rem, 2vw, 1rem)",
               }}
             />
           </div>
@@ -504,16 +479,41 @@ const Home = () => {
       </div>
       <div ref={endRef} />
       <style>{`
-        /* Blinking I-beam cursor on input */
         input {
-  caret-color: #00ff00;
-  caret-shape: bar;
-  caret-width: 2px;
-}
+          caret-color: #00ff00;
+          caret-shape: bar;
+          caret-width: 2px;
+        }
 
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
+        }
+
+        /* Responsive scrollbar styling */
+        ::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: rgba(0, 255, 0, 0.5);
+          border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 255, 0, 0.7);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+          .font-mono {
+            letter-spacing: -0.5px;
+          }
         }
       `}</style>
     </div>
