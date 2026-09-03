@@ -747,6 +747,10 @@ section {
   background: var(--accent);
 }
 
+.contrib-status-closed .contrib-dot {
+  background: var(--muted);
+}
+
 /* ---------- linkedin posts ---------- */
 /* LinkedIn's embed is a fixed 504px-wide widget, not fluid. We render it at
    native size, then scale the whole rendered box down to card size, same
