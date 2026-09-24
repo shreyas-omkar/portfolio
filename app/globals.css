@@ -710,7 +710,7 @@ section {
 
 .contrib-org {
   flex: 0 0 auto;
-  min-width: 200px;
+  min-width: 240px;
   font-size: 12.5px;
   color: var(--muted);
 }
@@ -767,6 +767,10 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.li-item:only-child {
+  grid-column: 1 / -1;
 }
 
 .li-card {

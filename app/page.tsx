@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
+import { AutoScrollList } from "@/components/AutoScrollList";
 import { BackgroundCarousel } from "@/components/BackgroundCarousel";
 import { Carousel } from "@/components/Carousel";
 import { Icon } from "@/components/Icon";
@@ -191,7 +192,7 @@ export default function Home() {
 
         <section id="contributions">
           <h2>Open Source Contributions</h2>
-          <div className="contrib-list">
+          <AutoScrollList>
             {contributions.map((c) => (
               <a
                 className="contrib-row"
@@ -210,7 +211,7 @@ export default function Home() {
                 </span>
               </a>
             ))}
-          </div>
+          </AutoScrollList>
 
           <div className="org-row">
             {contribOrgs.map((o) => (
