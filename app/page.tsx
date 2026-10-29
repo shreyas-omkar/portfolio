@@ -1,10 +1,10 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { AutoScrollList } from "@/components/AutoScrollList";
-import { BackgroundCarousel } from "@/components/BackgroundCarousel";
+import { HeroBackground } from "@/components/HeroBackground";
 import { Carousel } from "@/components/Carousel";
 import { Icon } from "@/components/Icon";
-import { galleryImages } from "@/lib/gallery";
+import { heroBackground } from "@/lib/gallery";
 import {
   achievements,
   blogPosts,
@@ -119,7 +119,10 @@ export default function Home() {
       </nav>
 
       <div className="splash">
-        <BackgroundCarousel images={galleryImages} intervalMs={5000} />
+        <HeroBackground
+          mobileSrc={heroBackground.mobile}
+          desktopSrc={heroBackground.desktop}
+        />
         <div className="splash-content">
           <p className="splash-line splash-line-1">Hi, I&apos;m Shreyas.</p>
           <p className="splash-line splash-line-2">
