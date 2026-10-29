@@ -129,10 +129,6 @@ export default function Home() {
             Compiler engineer and systems geek.
           </p>
         </div>
-        <a href="#top" className="scroll-cue" aria-label="Scroll down">
-          <span>Scroll</span>
-          <span className="scroll-arrow">&#8595;</span>
-        </a>
       </div>
 
       <main id="top">
