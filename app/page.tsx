@@ -7,6 +7,7 @@ import { Icon } from "@/components/Icon";
 import { galleryImages } from "@/lib/gallery";
 import {
   achievements,
+  blogPosts,
   contribOrgs,
   contributions,
   education,
@@ -109,6 +110,7 @@ export default function Home() {
             <a href="#projects">Projects</a>
             <a href="#contributions">Contributions</a>
             <a href="#posts">Posts</a>
+            <a href="#writing">Writing</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
@@ -234,6 +236,31 @@ export default function Home() {
         <section id="posts">
           <h2>Posts</h2>
           <Carousel slides={postSlides} autoPlayMs={7000} />
+        </section>
+
+        <section id="writing">
+          <h2>Writing</h2>
+          <div className="blog-grid">
+            {blogPosts.map((b) => (
+              <a
+                className="blog-card"
+                href={b.url}
+                target="_blank"
+                rel="noopener"
+                key={b.url}
+              >
+                <div className="blog-top">
+                  <span className="blog-source mono">{b.source}</span>
+                  <span className="blog-date mono">{b.date}</span>
+                </div>
+                <div className="blog-title">
+                  {b.title}
+                  <Icon name="arrow" size={13} />
+                </div>
+                <p className="blog-desc">{b.description}</p>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section id="achievements">

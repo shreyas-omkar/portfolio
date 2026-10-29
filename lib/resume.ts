@@ -23,6 +23,16 @@ export type LinkedInPost = { src: string; height: number; href: string };
 // Newest first, then the order they were pinned/sent, top to bottom.
 export const linkedInPosts: LinkedInPost[] = [
   {
+    src: "https://www.linkedin.com/embed/feed/update/urn:li:share:7521620419762757632?collapsed=1",
+    height: 645,
+    href: "https://www.linkedin.com/feed/update/urn:li:share:7521620419762757632",
+  },
+  {
+    src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7518538855558488064?collapsed=1",
+    height: 628,
+    href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7518538855558488064",
+  },
+  {
     src: "https://www.linkedin.com/embed/feed/update/urn:li:share:7508135195754049537?collapsed=1",
     height: 670,
     href: "https://www.linkedin.com/feed/update/urn:li:share:7508135195754049537",
@@ -46,6 +56,34 @@ export const linkedInPosts: LinkedInPost[] = [
     src: "https://www.linkedin.com/embed/feed/update/urn:li:share:7421238510352871424?collapsed=1",
     height: 580,
     href: "https://www.linkedin.com/feed/update/urn:li:share:7421238510352871424",
+  },
+];
+
+export type BlogPost = {
+  title: string;
+  source: string;
+  date: string;
+  description: string;
+  url: string;
+};
+
+// Newest first.
+export const blogPosts: BlogPost[] = [
+  {
+    title: "Google Summer of Code 2026, a review back",
+    source: "dev.to",
+    date: "Oct 2026",
+    description:
+      "A look back at the GSoC'26 project with JuliaGPU: the proposal process, working with mentors, the sorting and reduction kernels that shipped, and advice for getting into the program.",
+    url: "https://dev.to/shreyasomkar/google-summer-of-code-2026-a-review-back-58e2",
+  },
+  {
+    title: "GSoC 2026: Portable data-parallel primitives for the Julia GPU stack",
+    source: "juliagpu.org",
+    date: "Oct 2026",
+    description:
+      "The GSoC'26 final report: reverse, findall, scans, reductions, sorting, and multi-source map added to AcceleratedKernels.jl so every Julia GPU backend shares one implementation, benchmarked on an RTX 5080 against the previous release and CUDA.jl.",
+    url: "https://juliagpu.org/post/2026-10-14-gsoc-portability/",
   },
 ];
 
@@ -100,17 +138,16 @@ export type Contribution = {
 };
 
 // Status reflects each PR's live state on GitHub (open / merged / closed
-// without merging), checked via `gh api repos/<repo>/pulls/<n>` on 2026-09-24,
+// without merging), checked via `gh api repos/<repo>/pulls/<n>` on 2026-10-30,
 // against github.com/shreyas-omkar/shreyas-omkar/blob/main/CONTRIBUTIONS.md.
 // Own repos (SiMG, SecureWipe, shreyas-omkar) are left out.
 export const contributions: Contribution[] = [
-  { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "feat: Add multi-argument map and map!", status: "open", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/130" },
-  { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "feat: Support sort(A; dims=1) in RadixSort via a segmented radix", status: "open", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/129" },
-  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: sort / sort! delegated to AcceleratedKernels", status: "open", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/788" },
-  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: Add accumulate, cumsum and cumprod using AcceleratedKernels", status: "open", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/787" },
-  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: Adding Base.reverse / reverse! support using AcceleratedKernels.jl", status: "open", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/786" },
-  { org: "vishruth-thimmaiah", repo: "segfault26", title: "feat: add accelerator backend on LLDB's accelerator-plugin framework", status: "open", url: "https://github.com/vishruth-thimmaiah/segfault26/pull/25" },
-  { org: "vishruth-thimmaiah", repo: "segfault26", title: "feat: add OpenCL vector type support to variable inspection", status: "merged", url: "https://github.com/vishruth-thimmaiah/segfault26/pull/23" },
+  { org: "JuliaGPU", repo: "juliagpu.org", title: "Add GSoC 2026 report: portable data-parallel primitives", status: "merged", url: "https://github.com/JuliaGPU/juliagpu.org/pull/65" },
+  { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "Let map and map! take several source arrays", status: "merged", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/130" },
+  { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "Sort along dims with RadixSort", status: "merged", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/129" },
+  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: sort / sort! delegated to AcceleratedKernels", status: "closed", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/788" },
+  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: Add accumulate, cumsum and cumprod using AcceleratedKernels", status: "closed", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/787" },
+  { org: "JuliaGPU", repo: "GPUArrays.jl", title: "feat: Adding Base.reverse / reverse! support using AcceleratedKernels.jl", status: "closed", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/786" },
   { org: "JuliaGPU", repo: "GPUArrays.jl", title: "Add a sorting interface", status: "closed", url: "https://github.com/JuliaGPU/GPUArrays.jl/pull/776" },
   { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "Add BitonicSort, a GPU sorting network for small arrays and short slices", status: "merged", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/126" },
   { org: "JuliaGPU", repo: "AcceleratedKernels.jl", title: "perf(sort): packed-key fast path for sort(A; dims=1)", status: "closed", url: "https://github.com/JuliaGPU/AcceleratedKernels.jl/pull/121" },

@@ -808,6 +808,67 @@ section {
   opacity: 1;
 }
 
+/* ---------- writing ---------- */
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.blog-card {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px 18px;
+  background: var(--bg-raised);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.blog-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.blog-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blog-source {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.blog-date {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.blog-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 650;
+  font-size: 15.5px;
+  margin-top: 8px;
+}
+
+.blog-title svg {
+  flex: 0 0 auto;
+  opacity: 0.6;
+}
+
+.blog-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
 /* ---------- achievements ---------- */
 
 .achieve-grid {
@@ -931,6 +992,9 @@ footer {
     margin-top: 56px;
   }
   .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-grid {
     grid-template-columns: 1fr;
   }
   .org-row {
