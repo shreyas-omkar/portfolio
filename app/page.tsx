@@ -16,6 +16,7 @@ import {
   profile,
   projects,
   skills,
+  talks,
 } from "@/lib/resume";
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -111,6 +112,7 @@ export default function Home() {
             <a href="#contributions">Contributions</a>
             <a href="#posts">Posts</a>
             <a href="#writing">Writing</a>
+            <a href="#talks">Talks</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
@@ -258,6 +260,28 @@ export default function Home() {
                   <Icon name="arrow" size={13} />
                 </div>
                 <p className="blog-desc">{b.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section id="talks">
+          <h2>Talks</h2>
+          <div className="talk-list">
+            {talks.map((t) => (
+              <a
+                className="talk-card"
+                href={t.url}
+                target="_blank"
+                rel="noopener"
+                key={t.url}
+              >
+                <span className="talk-venue mono">{t.venue}</span>
+                <div className="talk-title">
+                  {t.title}
+                  <Icon name="arrow" size={13} />
+                </div>
+                <p className="talk-desc">{t.description}</p>
               </a>
             ))}
           </div>

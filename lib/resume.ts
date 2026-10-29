@@ -87,6 +87,25 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+export type Talk = {
+  title: string;
+  venue: string;
+  description: string;
+  url: string;
+};
+
+// Newest first.
+export const talks: Talk[] = [
+  {
+    title:
+      "One Language, All GPU: How Julia Targets different GPU backends from a Single Kernel",
+    venue: "India FOSS 2026",
+    description:
+      "How Julia enables GPU programming across NVIDIA, AMD, Intel, and Apple hardware using a single kernel. Covers the JuliaGPU stack (GPUCompiler.jl, KernelAbstractions.jl, GPUArrays.jl, AcceleratedKernels.jl), how Julia's compiler infrastructure handles cross-vendor GPU execution, the performance challenges of portable GPU code, and lessons from contributing to the JuliaGPU open-source ecosystem.",
+    url: "https://www.youtube.com/watch?v=rb1ZALRGFjw&t=8472s",
+  },
+];
+
 export type Experience = {
   title: string;
   sub: string;
